@@ -4,6 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -60,6 +61,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import androidTestFiles.Utils.Assertions.RecyclerViewItemCountAssertion;
 import androidTestFiles.Utils.CourseUtils;
 import androidTestFiles.Utils.FileUtils;
 import androidTestFiles.Utils.MockedApiEndpointTest;
@@ -244,7 +246,7 @@ public class TopicsPasswordProtectedTest extends MockedApiEndpointTest {
             UITestActionsUtils.clickRecyclerViewPosition(R.id.recycler_courses, 0);
             UITestActionsUtils.clickRecyclerViewPosition(R.id.recycler_course_sections, 4);
             onView(withText(R.string.password_needed)).check(matches(isDisplayed()));
-            onView(withId(R.id.section_password_field)).perform(typeText(PASSWORD_INITIAL), closeSoftKeyboard());
+            onView(withId(R.id.section_password_field)).perform(replaceText(PASSWORD_INITIAL), closeSoftKeyboard());
             onView(withId(R.id.submit_password)).perform(click());
             onView(withText(R.string.password_needed)).check(matches(not(isDisplayed())));
 
@@ -408,8 +410,7 @@ public class TopicsPasswordProtectedTest extends MockedApiEndpointTest {
         try (ActivityScenario<SearchActivity> scenario = ActivityScenario.launch(SearchActivity.class)) {
             onView(withId(R.id.search_string)).perform(typeText("omicron"), closeSoftKeyboard());
             onView(withId(R.id.searchbutton)).perform(click());
-
-            onView(withId(R.id.recycler_results_search)).check(matches(hasChildCount(4)));
+            onView(withId(R.id.recycler_results_search)).check(new RecyclerViewItemCountAssertion(4));
         }
     }
 
