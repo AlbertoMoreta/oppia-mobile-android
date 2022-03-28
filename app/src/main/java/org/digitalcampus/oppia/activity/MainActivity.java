@@ -108,7 +108,7 @@ public class MainActivity extends AppActivity implements BottomNavigationView.On
         configureUserOptions();
         updateUserTotalPoints();
 
-       // checkStagingServer();
+        checkStagingServer();
     }
 
     private void checkStagingServer() {
