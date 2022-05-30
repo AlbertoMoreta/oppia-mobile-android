@@ -191,7 +191,7 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
     }
 
     @Test
-    public void checkAdminProtectionOnPrefsCheckboxAdminProtectionClick() throws Exception {
+    public void checkAdminProtectionOnPrefsCheckboxAdminProtectionClick(){
 
         try (ActivityScenario<PrefsActivity> scenario = ActivityScenario.launch(PrefsActivity.class)) {
 
