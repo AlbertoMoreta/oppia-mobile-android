@@ -278,6 +278,7 @@ dependencies {
         // exclude androidx.test:core while fragment_testing depends on 1.1.0
         exclude group: 'androidx.test', module: 'core'
     }
+    debugImplementation 'androidx.test:core:1.4.0'
 
     //Mockito Dependencies
     testImplementation 'org.mockito:mockito-core:4.3.1'
