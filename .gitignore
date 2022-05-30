@@ -8,11 +8,16 @@
 /.idea/
 /build
 /app/build
-/gradle/wrapper/gradle-wrapper.jar
 *.iml
 .gradle
 gradlew
 gradlew.bat
+gradle/caches/
+gradle/.tmp/
+gradle/daemon/
+gradle/native/
+gradle/wrapper/
+!gradle-wrapper.properties
 app/app-release.apk
 custom.properties
 sonarqube.properties
