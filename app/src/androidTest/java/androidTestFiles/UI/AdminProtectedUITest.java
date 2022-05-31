@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import androidTestFiles.TestRules.DaggerInjectMockUITest;
 import androidTestFiles.Utils.CourseUtils;
@@ -38,9 +39,11 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.awaitility.Awaitility.await;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
@@ -207,19 +210,24 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
                     .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.prefAdminProtection)),
                             click()));
 
-            switch (adminProtectionOption) {
+            await().atMost(5, TimeUnit.SECONDS)
+                .untilAsserted(
+                    () -> {
+                        switch (adminProtectionOption) {
 
-                case PROTECTION_OPTION_ADMIN_AND_ACTION:
-                    checkAdminPasswordDialogIsDisplayed();
-                    break;
-                case PROTECTION_OPTION_ONLY_ACTION:
-                    checkAdminPasswordDialogIsNOTDisplayed();
-                    pressBack();
-                    break;
-                case PROTECTION_OPTION_ONLY_ADMIN:
-                    checkAdminPasswordDialogIsDisplayed();
-                    break;
-            }
+                            case PROTECTION_OPTION_ADMIN_AND_ACTION:
+                                checkAdminPasswordDialogIsDisplayed();
+                                break;
+                            case PROTECTION_OPTION_ONLY_ACTION:
+                                checkAdminPasswordDialogIsNOTDisplayed();
+                                pressBack();
+                                break;
+                            case PROTECTION_OPTION_ONLY_ADMIN:
+                                checkAdminPasswordDialogIsDisplayed();
+                                break;
+                        }
+                    }
+                );
         }
     }
 
