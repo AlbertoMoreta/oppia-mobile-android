@@ -210,7 +210,7 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
                     .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.prefAdminProtection)),
                             click()));
 
-            await().atMost(5, TimeUnit.SECONDS)
+            await().atMost(20, TimeUnit.SECONDS)
                 .untilAsserted(
                     () -> {
                         switch (adminProtectionOption) {
