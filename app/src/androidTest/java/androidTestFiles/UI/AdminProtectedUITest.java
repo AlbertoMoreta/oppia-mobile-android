@@ -210,24 +210,18 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
                     .perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.prefAdminProtection)),
                             click()));
 
-            await().atMost(60, TimeUnit.SECONDS)
-                .untilAsserted(
-                    () -> {
-                        switch (adminProtectionOption) {
-
-                            case PROTECTION_OPTION_ADMIN_AND_ACTION:
-                                checkAdminPasswordDialogIsDisplayed();
-                                break;
-                            case PROTECTION_OPTION_ONLY_ACTION:
-                                checkAdminPasswordDialogIsNOTDisplayed();
-                                pressBack();
-                                break;
-                            case PROTECTION_OPTION_ONLY_ADMIN:
-                                checkAdminPasswordDialogIsDisplayed();
-                                break;
-                        }
-                    }
-                );
+            switch (adminProtectionOption) {
+                case PROTECTION_OPTION_ADMIN_AND_ACTION:
+                    checkAdminPasswordDialogIsDisplayed();
+                    break;
+                case PROTECTION_OPTION_ONLY_ACTION:
+                    checkAdminPasswordDialogIsNOTDisplayed();
+                    pressBack();
+                    break;
+                case PROTECTION_OPTION_ONLY_ADMIN:
+                    checkAdminPasswordDialogIsDisplayed();
+                    break;
+            }
         }
     }
 

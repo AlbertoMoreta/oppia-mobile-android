@@ -7,6 +7,8 @@ instrumented_tests_task:
       - API_LEVEL: 28
       - API_LEVEL: 29
       - API_LEVEL: 30
+      - API_LEVEL: 31
+      - API_LEVEL: 32
   container:
     image: reactivecircus/android-emulator-${API_LEVEL}:latest
     kvm: true
