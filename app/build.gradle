@@ -11,7 +11,7 @@ def version_code = 99
 def version_name = "7.3.9"
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         versionCode version_code
@@ -20,7 +20,7 @@ android {
         applicationId "org.digitalcampus.mobile.learning"
 
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // The following argument makes the Android Test Orchestrator run its
