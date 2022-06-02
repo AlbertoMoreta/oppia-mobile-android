@@ -29,6 +29,7 @@ android {
         testInstrumentationRunnerArguments clearPackageData: 'true'
         testInstrumentationRunnerArguments coverage: 'true'
         testInstrumentationRunnerArguments coverageFilePath: '/sdcard/coverage/'
+        testInstrumentationRunnerArguments useTestStorageService: 'true'
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -176,7 +177,7 @@ android {
     }
 
     testOptions {
-        //execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
         animationsDisabled = true
