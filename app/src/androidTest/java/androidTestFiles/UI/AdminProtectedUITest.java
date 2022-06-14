@@ -81,10 +81,9 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
 
     @Parameterized.Parameters
     public static List<Integer[]> adminProtectionOptions() {
-        return Arrays.asList(new Integer[][]{
-                new Integer[]{PROTECTION_OPTION_ADMIN_AND_ACTION},
+        return Arrays.asList(new Integer[]{PROTECTION_OPTION_ADMIN_AND_ACTION},
                 new Integer[]{PROTECTION_OPTION_ONLY_ACTION},
-                new Integer[]{PROTECTION_OPTION_ONLY_ADMIN}});
+                new Integer[]{PROTECTION_OPTION_ONLY_ADMIN});
     }
 
     @Before
@@ -158,6 +157,7 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
                 .untilAsserted(
                         () ->
                                 onView(withText(R.string.admin_password_required))
+                                        .inRoot(isDialog())
                                         .check(matches(isDisplayed()))
                 );
     }
