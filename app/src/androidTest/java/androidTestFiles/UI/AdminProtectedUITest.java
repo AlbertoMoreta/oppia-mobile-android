@@ -38,6 +38,7 @@ import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.isDialog;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -136,7 +137,10 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
 
     private void fillPasswordDialog() {
         onView(withId(R.id.admin_password_field)).perform(clearText(), typeText("testpass"));
-        onView(withText(R.string.ok)).perform(click());
+        onView(withText(R.string.ok))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()))
+                .perform(click());
     }
 
     private void givenThereAreSomeCourses(int numberOfCourses) {
