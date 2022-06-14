@@ -150,8 +150,12 @@ public class AdminProtectedUITest extends DaggerInjectMockUITest {
 
     // --- CHECKS ---
     private void checkAdminPasswordDialogIsDisplayed() {
-        onView(withText(R.string.admin_password_required))
-                .check(matches(isDisplayed()));
+        await().atMost(20, TimeUnit.SECONDS)
+                .untilAsserted(
+                        () ->
+                                onView(withText(R.string.admin_password_required))
+                                        .check(matches(isDisplayed()))
+                );
     }
 
     private void checkAdminPasswordDialogIsNOTDisplayed() {
