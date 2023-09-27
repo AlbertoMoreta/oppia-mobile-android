@@ -213,6 +213,7 @@ dependencies {
     val appcompatVersion = "1.6.0-rc01"
     val espressoVersion = "3.5.1"
     val kotlinVersion = "1.8.20"
+    val coroutinesVersion = "1.7.3"
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation ("joda-time:joda-time:2.10.13")
@@ -307,6 +308,8 @@ dependencies {
 
     // Kotlin Dependencies
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}")
 }
 
 tasks.register<Exec>("grantPermissions") {

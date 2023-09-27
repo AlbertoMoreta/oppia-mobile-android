@@ -26,7 +26,6 @@ import org.digitalcampus.oppia.model.CoursesRepository;
 import org.digitalcampus.oppia.model.User;
 import org.digitalcampus.oppia.model.responses.CourseServer;
 import org.digitalcampus.oppia.model.responses.CoursesServerResponse;
-import org.digitalcampus.oppia.task.APIUserRequestTask;
 import org.digitalcampus.oppia.task.result.BasicResult;
 import org.digitalcampus.oppia.utils.CourseUtils;
 import org.digitalcampus.oppia.utils.TextUtilsJava;

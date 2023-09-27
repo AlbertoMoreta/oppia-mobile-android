@@ -33,7 +33,6 @@ import org.digitalcampus.oppia.application.PermissionsManager;
 import org.digitalcampus.oppia.listener.APIRequestListener;
 import org.digitalcampus.oppia.model.Badge;
 import org.digitalcampus.oppia.service.DownloadOppiaDataService;
-import org.digitalcampus.oppia.task.APIUserRequestTask;
 import org.digitalcampus.oppia.task.result.BasicResult;
 import org.digitalcampus.oppia.utils.TextUtilsJava;
 import org.digitalcampus.oppia.utils.UIUtils;

@@ -45,7 +45,7 @@ object HTTPClientUtils {
     private var client: OkHttpClient? = null
 
     @JvmStatic
-    fun getClient(ctx: Context): OkHttpClient? {
+    fun getClient(ctx: Context): OkHttpClient {
         if (client == null) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(ctx)
             val timeoutConn = prefs.getString(PrefsActivity.PREF_SERVER_TIMEOUT_CONN,
@@ -58,7 +58,7 @@ object HTTPClientUtils {
                     .hostnameVerifier { hostname: String, session: SSLSession -> hostname.equals(session.peerHost, ignoreCase = true) }
                     .build()
         }
-        return client
+        return client!!
     }
 
     private fun getLoggingInterceptor(): Interceptor {

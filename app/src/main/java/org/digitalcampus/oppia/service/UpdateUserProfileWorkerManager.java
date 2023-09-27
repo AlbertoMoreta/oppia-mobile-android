@@ -15,7 +15,6 @@ import org.digitalcampus.oppia.database.DbHelper;
 import org.digitalcampus.oppia.listener.APIRequestFinishListener;
 import org.digitalcampus.oppia.listener.APIRequestListener;
 import org.digitalcampus.oppia.model.User;
-import org.digitalcampus.oppia.task.APIUserRequestTask;
 import org.digitalcampus.oppia.task.result.BasicResult;
 import org.digitalcampus.oppia.utils.MetaDataUtils;
 import org.digitalcampus.oppia.utils.TextUtilsJava;
