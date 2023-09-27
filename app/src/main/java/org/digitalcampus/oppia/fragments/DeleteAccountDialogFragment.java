@@ -11,6 +11,7 @@ import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.mobile.learning.databinding.DialogDeleteAccountBinding;
 import org.digitalcampus.oppia.activity.AppActivity;
 import org.digitalcampus.oppia.api.ApiEndpoint;
+import org.digitalcampus.oppia.api.RemoteApiEndpoint;
 import org.digitalcampus.oppia.listener.APIRequestListener;
 import org.digitalcampus.oppia.task.DeleteAccountTask;
 import org.digitalcampus.oppia.task.result.BasicResult;
@@ -66,7 +67,10 @@ public class DeleteAccountDialogFragment extends DialogFragment implements APIRe
                 return;
             }
 
-            DeleteAccountTask task = new DeleteAccountTask(getContext(), apiEndpoint);
+            DeleteAccountTask task = new DeleteAccountTask(getContext());
+            if(apiEndpoint != null) {
+                task.setApiEndpoint(apiEndpoint);
+            }
             task.setAPIRequestListener(this);
             task.execute(password);
         });

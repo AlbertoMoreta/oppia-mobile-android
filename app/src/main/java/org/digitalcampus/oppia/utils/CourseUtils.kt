@@ -181,7 +181,7 @@ object CourseUtils {
     }
 
     @JvmStatic
-    fun updateCourseCache(context: Context?, prefs: SharedPreferences, apiEndpoint: ApiEndpoint?) {
+    fun updateCourseCache(context: Context, prefs: SharedPreferences, apiEndpoint: ApiEndpoint) {
         val task = APIUserRequestTask(context, apiEndpoint)
         val url = Paths.SERVER_COURSES_PATH
         task.setAPIRequestListener(object : APIRequestListener {

@@ -42,7 +42,7 @@ class TagRepository {
         private const val JSON_PROPERTY_COURSE_STATUSES = "course_statuses"
     }
 
-    fun getTagList(ctx: Context, api: ApiEndpoint?) {
+    fun getTagList(ctx: Context, api: ApiEndpoint) {
         (ctx as AppActivity).showProgressDialog(ctx.getString(R.string.loading))
         val task = APIUserRequestTask(ctx, api)
         val url = Paths.SERVER_TAG_PATH

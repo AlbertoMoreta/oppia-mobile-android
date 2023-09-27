@@ -11,10 +11,10 @@ object RemoteApiEndpoint : ApiEndpoint {
     private const val MIN_MIN_VERSION = 12
     private const val MIN_BUILD_VERSION = 6
 
-    override fun getFullURL(ctx: Context?, apiPath: String?): String {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(ctx!!)
+    override fun getFullURL(ctx: Context, apiPath: String): String {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(ctx)
         var url = prefs.getString(PrefsActivity.PREF_SERVER, ctx.getString(R.string.prefServerDefault)) ?: ""
-        if (!url.endsWith("/") && !apiPath!!.startsWith("/")) url += "/"
+        if (!url.endsWith("/") && !apiPath.startsWith("/")) url += "/"
         return url + apiPath
     }
 

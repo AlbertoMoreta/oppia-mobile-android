@@ -7,7 +7,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 class CourseInstallRepository {
-    fun getCourseList(ctx: Context?, url: String?) {
+    fun getCourseList(ctx: Context, url: String) {
         val task = APIUserRequestTask(ctx)
         task.setAPIRequestListener(ctx as APIRequestListener?)
         task.execute(url)

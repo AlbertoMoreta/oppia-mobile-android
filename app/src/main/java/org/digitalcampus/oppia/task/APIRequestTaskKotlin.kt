@@ -18,7 +18,7 @@ import org.digitalcampus.oppia.task.APIRequestTaskKotlin
 import org.digitalcampus.oppia.task.result.BasicResult
 import org.digitalcampus.oppia.utils.HTTPClientUtils.getUrlWithCredentials
 
-abstract class APIRequestTaskKotlin(var ctx: Context, var apiEndpoint: ApiEndpoint = RemoteApiEndpoint) {
+abstract class APIRequestTaskKotlin(protected var ctx: Context, var apiEndpoint: ApiEndpoint = RemoteApiEndpoint) {
 
     @JvmField
     val TAG = APIRequestTaskKotlin::class.simpleName
@@ -47,9 +47,7 @@ abstract class APIRequestTaskKotlin(var ctx: Context, var apiEndpoint: ApiEndpoi
     }
 
     protected fun onSuccess(result: BasicResult) {
-        if (listener != null) {
-            listener!!.onRequestFinish(nameRequest)
-        }
+        listener?.onRequestFinish(nameRequest)
     }
 
     protected fun invalidateApiKey(result: BasicResult) {

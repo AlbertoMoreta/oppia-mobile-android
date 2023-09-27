@@ -32,15 +32,18 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
-class APIUserRequestTask(ctx: Context, apiEndpoint: ApiEndpoint) : APIRequestTaskKotlin(ctx, apiEndpoint) {
+open class APIUserRequestTask(ctx: Context, apiEndpoint: ApiEndpoint = RemoteApiEndpoint) : APIRequestTaskKotlin(ctx, apiEndpoint) {
+    constructor(context: Context) : this(context, RemoteApiEndpoint) {
+        // TODO Kotlin: Remove this constructor when every reference to this class is migrated to Kotlin
+    }
 
     @JvmField
     protected var apiKeyInvalidated = false
     private var requestListener: APIRequestListener? = null
 
-    private val uiScope = CoroutineScope(Dispatchers.Main)
+    protected val uiScope = CoroutineScope(Dispatchers.Main)
 
-    fun execute(url: String) {
+    open fun execute(url: String) {
         uiScope.launch {
             val result = withContext(Dispatchers.IO) {
                 doInBackground(url)
@@ -50,7 +53,7 @@ class APIUserRequestTask(ctx: Context, apiEndpoint: ApiEndpoint) : APIRequestTas
         }
     }
 
-    fun doInBackground(url: String): BasicResult{
+    private fun doInBackground(url: String): BasicResult {
         val now = System.currentTimeMillis()
         val result = BasicResult()
 
@@ -73,7 +76,7 @@ class APIUserRequestTask(ctx: Context, apiEndpoint: ApiEndpoint) : APIRequestTas
         return result
     }
 
-    fun onPostExecute(result: BasicResult) {
+    private fun onPostExecute(result: BasicResult) {
         if (apiKeyInvalidated) {
             requestListener?.apiKeyInvalidated()
         } else {
@@ -93,15 +96,15 @@ class APIUserRequestTask(ctx: Context, apiEndpoint: ApiEndpoint) : APIRequestTas
     }
 
     private fun onFailure(code: Int? = null): BasicResult {
-        val result: BasicResult
+        val result = BasicResult(false)
         when(code) {
             401 -> {
-                result = BasicResult(false, ctx.getString(R.string.error_apikey_expired))
+                result.resultMessage = ctx.getString(R.string.error_apikey_expired)
                 invalidateApiKey(result)
                 apiKeyInvalidated = true
             }
-            403 -> result = BasicResult(false, ctx.getString(R.string.error_login))
-            else -> result = BasicResult(false, ctx.getString(R.string.error_connection))
+            403 -> result.resultMessage = ctx.getString(R.string.error_login)
+            else -> result.resultMessage = ctx.getString(R.string.error_connection)
         }
         return result
     }
